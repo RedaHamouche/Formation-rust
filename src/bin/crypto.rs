@@ -1,13 +1,13 @@
-use rand_core::OsRng;
+use rand::rngs::OsRng;
 use x25519_dalek::{EphemeralSecret, PublicKey};
 
 fn main() {
     // Alice génère sa paire
-    let alice_secret = EphemeralSecret::new(OsRng);
+    let alice_secret = EphemeralSecret::random_from_rng(OsRng);
     let alice_public = PublicKey::from(&alice_secret);
 
     // Bob génère sa paire
-    let bob_secret = EphemeralSecret::new(OsRng);
+    let bob_secret = EphemeralSecret::random_from_rng(OsRng);
     let bob_public = PublicKey::from(&bob_secret);
 
     // Chacun calcule le secret partagé
